@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get API Key</title>
+</head>
+<body>
+  <h1>API Key</h1>
+  <p id="apiKey">Loading...</p>
+
+  <script>
+    // Fetch the API key from /key endpoint
+    fetch('/key')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('apiKey').innerText = `API Key: ${data.key}`;
+      })
+      .catch(err => {
+        console.error('Error fetching API key:', err);
+      });
+  </script>
+</body>
+</html>
