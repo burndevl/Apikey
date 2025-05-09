@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get API Key</title>
+  <title>Generate API Key</title>
 </head>
 <body>
-  <h1>API Key</h1>
-  <p id="apiKey">Loading...</p>
+  <h1>Generate API Key</h1>
+  <button id="generateKey">Generate Key</button>
+  <p id="apiKey">API Key: </p>
 
   <script>
-    // Fetch the API key from /key endpoint
-    fetch('/key')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('apiKey').innerText = `API Key: ${data.key}`;
-      })
-      .catch(err => {
-        console.error('Error fetching API key:', err);
-      });
+    document.getElementById('generateKey').addEventListener('click', function() {
+      fetch('/generate-key')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('apiKey').innerText = `API Key: ${data.key}`;
+        })
+        .catch(err => {
+          console.error('Error generating key:', err);
+        });
+    });
   </script>
 </body>
 </html>
